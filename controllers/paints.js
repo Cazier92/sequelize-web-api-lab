@@ -21,10 +21,10 @@ const index = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const paint = await Paint.update(
-      req.body,
-      {where: {id: req.params.id}, returning: true}
-    )
+    const paint = await Paint.findByPk(req.params.id)
+    paint.set(req.body)
+    await paint.save()
+    
     res.status(200).json(paint)
   } catch (error) {
     res.status(500).json(error)
