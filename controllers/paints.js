@@ -24,7 +24,26 @@ const update = async (req, res) => {
     const paint = await Paint.findByPk(req.params.id)
     paint.set(req.body)
     await paint.save()
-    
+
+    res.status(200).json(paint)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const deletePaint = async (req, res) => {
+  try {
+    const paint = await Paint.findByPk(req.params.id)
+    await paint.destroy()
+    res.status(200).json(paint)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const show = async (req, res) => {
+  try {
+    const paint = await Paint.findByPk(req.params.id)
     res.status(200).json(paint)
   } catch (error) {
     res.status(500).json(error)
@@ -36,4 +55,6 @@ module.exports = {
   create,
   index,
   update,
+  delete: deletePaint,
+  show,
 }
