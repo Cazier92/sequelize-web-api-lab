@@ -7,6 +7,7 @@ const cors = require('cors')
 // import routers
 const indexRouter = require('./routes/index.js')
 const paintsRouter = require('./routes/paints.js')
+const mixturesRouter = require('./routes/mixtures.js')
 
 // create the express app
 const app = express()
@@ -19,6 +20,7 @@ app.use(express.json())
 // mount imported routes
 app.use('/', indexRouter)
 app.use('/api/paints', paintsRouter)
+app.use('/api/mixtures', mixturesRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {
