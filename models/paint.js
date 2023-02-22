@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         through: models.PaintMixture,
         foreignKey: 'paintId'
       })
+      Paint.belongsToMany(models.NeutralMix, {
+        as: 'neutralMixes',
+        through: models.NeutralPaintMix,
+        foreignKey: 'paintId'
+      })
+      
     }
   }
   Paint.init({
@@ -25,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     color: DataTypes.STRING,
     transparency: DataTypes.INTEGER,
     staining: DataTypes.INTEGER,
-    granulation: DataTypes.INTEGER
+    granulation: DataTypes.INTEGER,
+    brand: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Paint',

@@ -8,6 +8,7 @@ const cors = require('cors')
 const indexRouter = require('./routes/index.js')
 const paintsRouter = require('./routes/paints.js')
 const mixturesRouter = require('./routes/mixtures.js')
+const neutralMixesRouter = require('./routes/neutralmixes.js')
 
 // create the express app
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use('/', indexRouter)
 app.use('/api/paints', paintsRouter)
 app.use('/api/mixtures', mixturesRouter)
+app.use('/api/neutralmixes', neutralMixesRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {
